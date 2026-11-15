@@ -5,3 +5,7 @@ __pycache__/
 .DS_Store
 .env
 nohup.out
+runs/*/
+runs/server_*.log
+runs/overnight.log
+runs/*.log
