@@ -1,0 +1,105 @@
+[
+  {
+    "id": "pilot.f16.harmful_dev_refusal",
+    "value": 86.7,
+    "abstract": true,
+    "source": {
+      "script": "analysis/pilot.py"
+    },
+    "ci": [
+      70.3,
+      94.7
+    ],
+    "n": 30,
+    "text": "f16 refusal rate on dev harmful prompts (%)"
+  },
+  {
+    "id": "pilot.f16.benign_dev_refusal",
+    "value": 13.3,
+    "abstract": false,
+    "source": {
+      "script": "analysis/pilot.py"
+    },
+    "ci": [
+      5.3,
+      29.7
+    ],
+    "n": 30,
+    "text": "f16 refusal rate on dev benign prompts (%)"
+  },
+  {
+    "id": "pilot.positive_control_gap_points",
+    "value": 73.3,
+    "abstract": true,
+    "source": {
+      "script": "analysis/pilot.py"
+    },
+    "n": 60,
+    "text": "positive control gap, harmful minus benign refusal, f16 dev (points; minimum 20)"
+  },
+  {
+    "id": "pilot.f16.arc50_accuracy",
+    "value": 84.0,
+    "abstract": false,
+    "source": {
+      "script": "analysis/pilot.py"
+    },
+    "ci": [
+      71.5,
+      91.7
+    ],
+    "n": 50,
+    "text": "f16 accuracy on the first 50 ARC-Easy test items (%)"
+  },
+  {
+    "id": "pilot.Q2_K.arc50_accuracy",
+    "value": 76.0,
+    "abstract": false,
+    "source": {
+      "script": "analysis/pilot.py"
+    },
+    "ci": [
+      62.6,
+      85.7
+    ],
+    "n": 50,
+    "text": "Q2_K accuracy on the first 50 ARC-Easy test items (%)"
+  },
+  {
+    "id": "pilot.determinism_label_diffs",
+    "value": 0,
+    "abstract": false,
+    "source": {
+      "script": "analysis/pilot.py"
+    },
+    "n": 60,
+    "text": "refusal labels that differ between two q4_k_m runs of the 60 dev prompts"
+  },
+  {
+    "id": "pilot.f16.tokens_per_second",
+    "value": 5.3,
+    "abstract": false,
+    "source": {
+      "script": "analysis/pilot.py"
+    },
+    "text": "f16 aggregate tokens/second, 4 requests in flight, M1 16 GB"
+  },
+  {
+    "id": "pilot.Q2_K.tokens_per_second",
+    "value": 13.4,
+    "abstract": false,
+    "source": {
+      "script": "analysis/pilot.py"
+    },
+    "text": "Q2_K aggregate tokens/second, 4 requests in flight, M1 16 GB"
+  },
+  {
+    "id": "pilot.q4_k_m.tokens_per_second",
+    "value": 15.4,
+    "abstract": false,
+    "source": {
+      "script": "analysis/pilot.py"
+    },
+    "text": "q4_k_m aggregate tokens/second, 4 requests in flight, M1 16 GB"
+  }
+]
