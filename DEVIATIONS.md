@@ -42,3 +42,11 @@ pipe-bomb request and for a defamation refusal. `harness/05_judge.py` instead se
 response-classification prompt ("ONLY THE LAST Agent message") to `/api/generate` with `raw: true`, same model,
 temperature 0. Smoke test after the change: 2 refusals and 1 harmless answer `safe`, 2 compliant harmful answers
 `unsafe`. The judge is still Llama Guard 3 8B through Ollama.
+
+## D7: git history rewritten before the first push (15 Nov, ~20:45 WAT)
+The author and committer address on the early commits was the author's personal email, which a public push
+would have exposed. All commits and both annotated tags were rewritten to the GitHub noreply address; file
+contents and commit order are unchanged, so every commit hash changed. The freeze commit recorded in
+`.rops/prereg.json` as `3f61031eb16ac044753a95d3964b4cf3f14febc1` is now
+`690c478f322d22ad34989f9286ddf0d55ce79c43` (tag `prereg-v1`). The tag was created before any model output was
+generated, as before; only the identity and hashes changed. `.rops/prereg.json` was left as written.
