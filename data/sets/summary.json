@@ -1,0 +1,31 @@
+{
+  "curator_counts": {
+    "jbb_harmful": {
+      "raw": 100,
+      "curated": 100
+    },
+    "jbb_benign": {
+      "raw": 100,
+      "curated": 99
+    },
+    "xs_unsafe": {
+      "raw": 200,
+      "curated": 200
+    },
+    "xs_safe": {
+      "raw": 250,
+      "curated": 250
+    }
+  },
+  "set_sizes": {
+    "harmful.dev": 30,
+    "harmful.test": 70,
+    "benign.dev": 30,
+    "benign.test": 69,
+    "xs_unsafe.test": 100,
+    "xs_safe.test": 100,
+    "wrapped.test": 140,
+    "capability.test": 150
+  },
+  "dev_test_leaks": 0
+}
