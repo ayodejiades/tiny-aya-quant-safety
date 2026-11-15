@@ -24,12 +24,13 @@ def letter(out):
     m = re.search(r"\b([A-E])\b", out.upper())
     return m.group(1) if m else None
 
-def run(arm, sets, split):
+def run(arm, sets, split, limit=None):
     for name in sets:
         path = pathlib.Path(f"data/sets/{name}.{split}.jsonl")
         if not path.exists():
             print(f"[{arm}] no {path}, skipping"); continue
         items = [json.loads(l) for l in open(path)]
+        if limit: items = items[:limit]
         outp = pathlib.Path(f"runs/{arm}/{name}.{split}.jsonl"); outp.parent.mkdir(parents=True, exist_ok=True)
         done = {json.loads(l)["id"] for l in open(outp)} if outp.exists() else set()
         todo = [it for it in items if it["id"] not in done]
@@ -61,5 +62,6 @@ if __name__ == "__main__":
     ap.add_argument("--arm", required=True)
     ap.add_argument("--sets", nargs="+", required=True)
     ap.add_argument("--split", default="test")
+    ap.add_argument("--limit", type=int, default=None)
     a = ap.parse_args()
-    run(a.arm, a.sets, a.split)
+    run(a.arm, a.sets, a.split, a.limit)

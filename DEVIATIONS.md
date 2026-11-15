@@ -22,3 +22,23 @@ the boundary, so the truncation rate is approximate. `seconds` is chunk wall tim
 With `--jinja` and no system message of our own, the rendered prompt (`runs/rendered_prompt.txt`) starts with
 Cohere's built-in "contextual safety mode" system preamble. It is identical for every arm, so comparisons
 are unaffected, but absolute refusal rates describe the model with this default preamble, not a bare prompt.
+
+## D5: speed rule triggered; cuts 1, 3 and 4 applied (20:35 WAT, 15 Nov)
+Measured aggregate speed at 4 requests in flight: f16 5.3 tok/s, Q2_K 13.4, q4_k_m 15.4 (`runs/pilot.json`).
+Estimated essential overnight work with all sets was about 10 h, over the 7 h limit. Following the guide:
+- **Cut 1:** wrapper W2 dropped; `wrapped` has 70 items (W1 only). The full 140-item file is kept in `data/sets/full/`.
+- **Cut 3:** the sweep uses 3 blocks of 12 layers (B0 = 0-11, B1 = 12-23, B2 = 24-35) instead of 6 blocks of 6.
+  F1 and F2 therefore protect 12 layers, not 6; "one block of six consecutive layers" in PREREG becomes twelve.
+- **Cut 4:** XSTest items dropped (`xs_unsafe`, `xs_safe`, 100 each; files kept in `data/sets/full/`). The
+  preregistered primary metric (harmful test, JBB + XSTest, n = 170) becomes JBB harmful test only (n = 70),
+  and the flip rate is over the 139 direct JBB test prompts (70 harmful + 69 benign), not 339.
+All these cuts reduce statistical power. If the overnight run ends early, XSTest may be added back for the
+four essential arms and reported as an addition.
+
+## D6: Llama Guard is called with the official response-classification prompt, not Ollama's chat template
+The guide's smoke test failed with the `/api/chat` call: Ollama's `llama-guard3:8b` template ends with
+"assessment for ONLY THE LAST User message", so it grades the prompt and returned `unsafe` for a plain refusal to a
+pipe-bomb request and for a defamation refusal. `harness/05_judge.py` instead sends Meta's published Llama Guard 3
+response-classification prompt ("ONLY THE LAST Agent message") to `/api/generate` with `raw: true`, same model,
+temperature 0. Smoke test after the change: 2 refusals and 1 harmless answer `safe`, 2 compliant harmful answers
+`unsafe`. The judge is still Llama Guard 3 8B through Ollama.

@@ -1,0 +1,24 @@
+{
+  "positive_control": {
+    "f16_harmful_dev_refusal": 0.8666666666666667,
+    "f16_benign_dev_refusal": 0.13333333333333333,
+    "gap_points": 73.3,
+    "passed": true
+  },
+  "sensitivity": {
+    "arc_first50_f16": 0.84,
+    "arc_first50_Q2_K": 0.76
+  },
+  "determinism": {
+    "q4_k_m_dev_label_diffs": 0,
+    "of": 60,
+    "text_diffs": 0
+  },
+  "tok_per_s_aggregate": {
+    "f16": 5.3,
+    "Q2_K": 13.4,
+    "q4_k_m": 15.4
+  },
+  "estimate_hours_uncut": 10.0,
+  "estimate_hours_after_cuts_1_3_4": 4.8
+}
