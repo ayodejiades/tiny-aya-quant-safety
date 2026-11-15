@@ -48,5 +48,7 @@ The author and committer address on the early commits was the author's personal 
 would have exposed. All commits and both annotated tags were rewritten to the GitHub noreply address; file
 contents and commit order are unchanged, so every commit hash changed. The freeze commit recorded in
 `.rops/prereg.json` as `3f61031eb16ac044753a95d3964b4cf3f14febc1` is now
-`690c478f322d22ad34989f9286ddf0d55ce79c43` (tag `prereg-v1`). The tag was created before any model output was
+`fd51c3f8ca13934167cf6d3af71be708d00b3d0f` (tags `prereg-v1`, `rops-guard-base-1`). History was rewritten a second
+time to remove raw pilot model outputs and run logs, which are published only through the HF logs dataset with
+unsafe responses truncated. The tag was created before any model output was
 generated, as before; only the identity and hashes changed. `.rops/prereg.json` was left as written.
