@@ -32,7 +32,7 @@ Response: The `rops` checking tools are the author's own earlier tooling, disclo
 
 ### A8: If an LLM judge scored anything, what is its agreement with hand labels?
 Status: limited
-Response: Llama Guard 3 and the keyword detector are compared with 60 blind hand labels by Cohen's kappa. JUDGE_STATUS_PLACEHOLDER Llama Guard was also called with a corrected prompt (`DEVIATIONS.md` D6), because the default Ollama template grades the prompt, not the response.
+Response: Llama Guard 3 and the keyword detector are compared with 60 blind hand labels by Cohen's kappa. The hand labels were not yet complete when this file was written, so kappa is pending. Llama Guard was also called with a corrected prompt (`DEVIATIONS.md` D6), because the default Ollama template grades the prompt, not the response.
 
 ### A9: How many seeds or samples per cell, and is variance reported?
 Status: limited

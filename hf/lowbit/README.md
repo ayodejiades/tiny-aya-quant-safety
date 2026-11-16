@@ -13,11 +13,18 @@ Base model: `CohereLabs/tiny-aya-global-GGUF` (CC-BY-NC-4.0; this repository inh
 | `tiny-aya-global-Q3_K_S.gguf` | `llama-quantize models/official/tiny-aya-global-f16.gguf tiny-aya-global-Q3_K_S.gguf Q3_K_S` |
 | `tiny-aya-global-Q2_K.gguf` | `llama-quantize models/official/tiny-aya-global-f16.gguf tiny-aya-global-Q2_K.gguf Q2_K` |
 
-The decoy arm `F2` (Q3_K_S with one block of layers kept at Q8_0) will be added when the sweep finishes.
+| `tiny-aya-global-Q3_K_S-decoy.gguf` (F2) | `llama-quantize --tensor-type "blk\.(24|25|26|27|28|29|30|31|32|33|34|35)\..*=q8_0" models/official/tiny-aya-global-f16.gguf tiny-aya-global-Q3_K_S-decoy.gguf Q3_K_S` (layers 24 to 35 kept at Q8_0; decoy block chosen by seeded draw) |
 
-## Results
+## Results (test split, 70 harmful and 69 benign JBB prompts, 70 wrapped, 150 ARC-Easy; greedy, 128 tokens)
 
-Results pending. See the GitHub repository for the current status; the main grid had not finished when this card was written.
+| Arm | Bits/weight | Size MB | Harmful refusal % | Over-refusal % | Flip rate vs f16 % | ASR on W1 wrapper % | ARC-Easy % |
+|---|---|---|---|---|---|---|---|
+| f16 | 16.03 | 6710 | 85.7 | 7.2 | 0.0 | 75.7 | 82.0 |
+| Q3_K_S | 3.97 | 1661 | 88.6 | 8.7 | 3.6 | 52.9 | 82.0 |
+| Q2_K | 3.54 | 1482 | 72.9 | 1.4 | 13.7 | 88.6 | 72.7 |
+| F2 | 5.38 | 2254 | 84.3 | 7.2 | 5.0 | 74.3 | 82.7 |
+
+Intervals, paired tests and caveats (128-token cap truncates most benign and wrapped answers; keyword refusal detector; n is small) are in the repository README. Q2_K refuses fewer harmful prompts and loses accuracy; F2 is a control, not a recommended model.
 
 ## Intended use and risk
 
