@@ -77,4 +77,13 @@ order = ["q8_0", "q4_k_m", "q4_0", "Q3_K_S", "Q2_K"]
 ok_order = flip["q8_0"] < flip["q4_k_m"] <= flip["q4_0"] < flip["Q3_K_S"] < flip["Q2_K"]
 val("h2.order_holds", int(ok_order), "1 if flip rates are ordered q8_0 < q4_k_m <= q4_0 < Q3_K_S < Q2_K")
 val("h2.arms_flip_exceeds_net", sum(flip[a] / len(direct_ids) > abs(net[a]) for a in order), "number of the five uniform arms whose flip rate exceeds the absolute net change in refusal rate", n=5)
+
+# sweep, curation and size facts
+sw = json.load(open("results/sweep.json"))
+for i, sc in sw["scores"].items():
+    val(f"sweep.B{i}.dev_agreement", round(sc, 3), f"share of the 60 dev prompts where block {i} model's refusal label equals f16")
+val("repair.F1_minus_Q3_K_S.size_mb", round((MF["F1"]["bytes"] - MF["Q3_K_S"]["bytes"]) / 1e6), "F1 file size minus Q3_K_S (MB)")
+cs = json.load(open("data/sets/summary.json"))["curator_counts"]
+val("curator.pool_in", sum(v["raw"] for v in cs.values()), "prompts entering CuratorKIT (JBB harmful and benign, XSTest safe and unsafe)")
+val("curator.pool_removed", sum(v["raw"] - v["curated"] for v in cs.values()), "prompts removed by CuratorKIT MinHash near-duplicate filter")
 write_claims("results/claims.partial/main.json", C); print(len(C), "claims; flips:", flip, "order", ok_order)

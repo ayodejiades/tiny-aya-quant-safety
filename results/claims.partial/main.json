@@ -2033,5 +2033,59 @@
     },
     "n": 5,
     "text": "number of the five uniform arms whose flip rate exceeds the absolute net change in refusal rate"
+  },
+  {
+    "id": "sweep.B0.dev_agreement",
+    "value": 1.0,
+    "abstract": false,
+    "source": {
+      "script": "analysis/main.py"
+    },
+    "text": "share of the 60 dev prompts where block 0 model's refusal label equals f16"
+  },
+  {
+    "id": "sweep.B1.dev_agreement",
+    "value": 0.95,
+    "abstract": false,
+    "source": {
+      "script": "analysis/main.py"
+    },
+    "text": "share of the 60 dev prompts where block 1 model's refusal label equals f16"
+  },
+  {
+    "id": "sweep.B2.dev_agreement",
+    "value": 0.917,
+    "abstract": false,
+    "source": {
+      "script": "analysis/main.py"
+    },
+    "text": "share of the 60 dev prompts where block 2 model's refusal label equals f16"
+  },
+  {
+    "id": "repair.F1_minus_Q3_K_S.size_mb",
+    "value": 593,
+    "abstract": false,
+    "source": {
+      "script": "analysis/main.py"
+    },
+    "text": "F1 file size minus Q3_K_S (MB)"
+  },
+  {
+    "id": "curator.pool_in",
+    "value": 650,
+    "abstract": false,
+    "source": {
+      "script": "analysis/main.py"
+    },
+    "text": "prompts entering CuratorKIT (JBB harmful and benign, XSTest safe and unsafe)"
+  },
+  {
+    "id": "curator.pool_removed",
+    "value": 1,
+    "abstract": false,
+    "source": {
+      "script": "analysis/main.py"
+    },
+    "text": "prompts removed by CuratorKIT MinHash near-duplicate filter"
   }
 ]

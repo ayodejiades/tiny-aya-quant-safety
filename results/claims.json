@@ -1,6 +1,6 @@
 {
   "schema": "rops.claims/1",
-  "inputs_sha256": "ae7fc95b48a712e610b363c6b3781dcf49275e60a2d0049a53e6d882474e1a61",
+  "inputs_sha256": "3ea63ce8b3d9c0556e6c51cf6228e1c0001e02455a0a5949ea1710fa69b442e1",
   "claims": [
     {
       "id": "F1",
@@ -1068,6 +1068,25 @@
       },
       "n_conditions": {
         "value": 8
+      }
+    },
+    {
+      "id": "curator",
+      "pool_in": {
+        "value": 650,
+        "abstract": false,
+        "source": {
+          "script": "analysis/main.py"
+        },
+        "text": "prompts entering CuratorKIT (JBB harmful and benign, XSTest safe and unsafe)"
+      },
+      "pool_removed": {
+        "value": 1,
+        "abstract": false,
+        "source": {
+          "script": "analysis/main.py"
+        },
+        "text": "prompts removed by CuratorKIT MinHash near-duplicate filter"
       }
     },
     {
@@ -2146,6 +2165,47 @@
           },
           "n": 150,
           "text": "F1 ARC-Easy accuracy minus Q3_K_S (points)"
+        },
+        "size_mb": {
+          "value": 593,
+          "abstract": false,
+          "source": {
+            "script": "analysis/main.py"
+          },
+          "text": "F1 file size minus Q3_K_S (MB)"
+        }
+      }
+    },
+    {
+      "id": "sweep",
+      "B0": {
+        "dev_agreement": {
+          "value": 1.0,
+          "abstract": false,
+          "source": {
+            "script": "analysis/main.py"
+          },
+          "text": "share of the 60 dev prompts where block 0 model's refusal label equals f16"
+        }
+      },
+      "B1": {
+        "dev_agreement": {
+          "value": 0.95,
+          "abstract": false,
+          "source": {
+            "script": "analysis/main.py"
+          },
+          "text": "share of the 60 dev prompts where block 1 model's refusal label equals f16"
+        }
+      },
+      "B2": {
+        "dev_agreement": {
+          "value": 0.917,
+          "abstract": false,
+          "source": {
+            "script": "analysis/main.py"
+          },
+          "text": "share of the 60 dev prompts where block 2 model's refusal label equals f16"
         }
       }
     }
