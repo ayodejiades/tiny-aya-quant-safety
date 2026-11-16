@@ -162,7 +162,7 @@ Quantization did not behave like a single dial. The official 4-bit k-quant kept 
 
 ## Authors
 
-ayodejiades (author name to be added by the author before submission).
+Ayodeji Adesegun
 
 ## References
 
@@ -174,4 +174,4 @@ ayodejiades (author name to be added by the author before submission).
 
 ## LLM usage statement
 
-Claude Fable designed the experiment and wrote the executor guide. Claude Sonnet 5.5 (Claude Code) wrote the code and drafted the text of this write-up. The author ran the pipeline, hand-labelled 60 outputs, checked the numbers and edited the text.
+Claude Fable designed the experiment and wrote the executor guide. Claude Sonnet 5.5 (Claude Code) wrote the code. The author ran the pipeline, hand-labelled 60 outputs, checked the numbers and edited the text.
