@@ -1,6 +1,6 @@
-# Official 4-bit Tiny Aya keeps its refusals; 2-bit loses them, and keeping 12 layers at 8-bit did not repair 3-bit
+# Official 4-bit Tiny Aya keeps its refusals; 2-bit flips 13.7% of refusal labels, and keeping 12 layers at 8-bit did not repair 3-bit
 
-**One-line claim:** across eight GGUF builds of Tiny Aya Global, the official q4_k_m file refuses the same share of harmful prompts as full precision (87.1% against 85.7%), the official q4_0 file refuses more of everything (over-refusal 21.7% against 7.2%), Q2_K loses refusals and capability, and protecting one 12-layer block of a 3-bit model at 8-bit flipped more refusal labels than plain 3-bit (7.2% against 3.6%).
+**One-line claim:** across eight GGUF builds of Tiny Aya Global, the official q4_k_m file refuses harmful prompts no less often than full precision (87.1% against 85.7%), the official q4_0 file refuses more of everything (over-refusal 21.7% against 7.2%), Q2_K flips 13.7% of refusal labels against full precision and scores lower on ARC-Easy (72.7% against 82.0%), though its lower harmful refusal (72.9%) is not significant after correction, and protecting one 12-layer block of a 3-bit model at 8-bit did not bring it closer to full precision than plain 3-bit or a decoy block (flip rates 7.2%, 3.6% and 5.0%).
 
 ## Tracks and problem statements
 
