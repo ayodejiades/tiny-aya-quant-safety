@@ -31,8 +31,8 @@ Status: fixed
 Response: The `rops` checking tools are the author's own earlier tooling, disclosed under Reproduction. The experiment design and executor guide were written by Claude Fable before the run, disclosed in the LLM usage statement.
 
 ### A8: If an LLM judge scored anything, what is its agreement with hand labels?
-Status: limited
-Response: Llama Guard 3 and the keyword detector are compared with 60 blind hand labels by Cohen's kappa. The hand labels were not yet complete when this file was written, so kappa is pending. Llama Guard was also called with a corrected prompt (`DEVIATIONS.md` D6), because the default Ollama template grades the prompt, not the response.
+Status: fixed
+Response: Llama Guard 3 and the keyword detector are compared with 60 blind hand labels by Cohen's kappa. The refusal detector reaches kappa 0.87 (93.3% raw agreement, n = 60). Llama Guard reaches kappa 0.46 (93.3% raw, n = 30 harmful-set rows): moderate, so ASR is reported as a relative measure and the README says so. Llama Guard was also called with a corrected prompt (`DEVIATIONS.md` D6), because the default Ollama template grades the prompt, not the response.
 
 ### A9: How many seeds or samples per cell, and is variance reported?
 Status: limited

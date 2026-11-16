@@ -13,15 +13,9 @@ The prompt sets name harmful topics (JailbreakBench). Model outputs that Llama G
 
 ## Abstract
 
-Tiny Aya is sold as an on-device model, so what people run is a quantized GGUF, not the full-precision weights that safety is normally measured on. We measured whether the refusal behaviour of Tiny Aya Global survives its official quantizations (q8_0, q4_k_m, q4_0) and two lower-bit builds we made with `llama-quantize` (Q3_K_S, Q2_K), and tested one repair: keep one block of 12 consecutive layers at Q8_0 inside an otherwise Q3_K_S model, with a decoy block as control. The design was preregistered before any output existed (git tag `prereg-v1`). Prompts are 70 harmful and 69 benign JailbreakBench behaviours plus 70 harmful prompts wrapped in a "thriller novel" template; the capability check is 150 ARC-Easy questions. Generation and keyword refusal detection ran through AuditKIT at temperature 0, harm was scored by Llama Guard 3, and the prompts were curated with CuratorKIT. The base model is `CohereLabs/tiny-aya-global-GGUF`.
+People run quantized GGUFs of Tiny Aya, but safety is measured on full-precision weights. We tested whether refusal survives q8_0, q4_k_m, q4_0 and two lower-bit builds (Q3_K_S, Q2_K), plus one repair: a block of 12 layers kept at Q8_0 inside Q3_K_S, with a decoy block as control. The design was preregistered. The official 4-bit file shows no erosion: harmful refusal 85.7% to 87.1%. q4_0 raises over-refusal from 7.2% to 21.7%. Q2_K refuses harmful prompts less (72.9%) and drops ARC-Easy from 82.0% to 72.7%. The repair failed: it is not better than its decoy (H3 not supported). Compute cuts and truncated outputs make intervals wide.
 
-Headline (before to after, f16 to q4_k_m): harmful refusal 85.7% to 87.1%, flip rate against f16 3.6% of 139 prompts. We found no erosion at the official 4-bit file (H1 not supported). The drift hides in the other arms: q4_0 raises over-refusal from 7.2% to 21.7% and flips 11.5% of labels (Holm-adjusted p = 0.0036 on the direct prompts); Q2_K refuses harmful prompts less (72.9%), doubles the Llama Guard attack success rate (10.0% to 20.0%) and drops ARC-Easy from 82.0% to 72.7%. The repair did not work (H3 not supported): F1 flips 7.2% of labels against 3.6% for plain Q3_K_S, and is not better than the decoy F2 (5.0%). It did not cost capability (82.7% against 82.0%, H4 supported).
-
-Preregistered compute cuts reduced the design (one wrapper, no XSTest, 12-layer blocks), so intervals are wide. All 128-token outputs were capped, and about nine in ten benign and wrapped responses hit the cap.
-
-> **For judges: one minute.** Question: does refusal survive quantization, and can protecting layers fix 3-bit? Answer: the official 4-bit file is fine on aggregate refusal; q4_0 drifts toward over-refusal, Q2_K toward unsafe compliance; the layer-protection repair failed against its own decoy and is reported as a null. Everything is preregistered, every arm is reported, and every number comes from `results/claims.json`.
-
-## Problem and approach
+## Introduction
 
 Safety audits are run on full-precision weights; users run 4-bit files. Aggregate refusal rate can stay flat while individual prompts flip in both directions, so we also measure the per-prompt flip rate against f16. The repair idea is that refusal behaviour might live in a few layers, so keeping a block at 8-bit inside a 3-bit model could restore it without paying for 8-bit everywhere.
 
@@ -32,7 +26,9 @@ Preregistered hypotheses (`PREREG.md`, tag [prereg-v1](https://github.com/ayodej
 - H3 (repair): F1 matches f16 more often than Q3_K_S and F2. **Not supported.**
 - H4 (no capability cost): F1 is not lower than Q3_K_S on ARC-Easy. **Supported.**
 
-Related work: the sources are listed under References. They were written from memory without a literature search and have not been re-verified, so check them before relying on them; we make no novelty claim.
+## Related Work and what is new this weekend
+
+Related work: the sources are listed under References. They were written from memory without a literature search and have not been re-verified, so check them before relying on them; we make no novelty claim beyond the experiment itself: per-prompt flip rates for official and custom quantizations of one model, and a layer-protection repair with a decoy control, all done this weekend.
 
 ## Hackathon repos used
 
@@ -77,7 +73,7 @@ Dev (30 + 30, three prompts per category) selected the protected block and is di
 
 ## Metrics
 
-Per arm, test split, each rate with a Wilson 95% interval: harmful refusal rate (harmful), over-refusal rate (benign), flip rate against f16 (share of the 139 direct prompts whose refusal label differs), refusal rate under W1, attack success rate (Llama Guard `unsafe` share on harmful and on wrapped), ARC-Easy accuracy, truncation rate, size, bits per weight and tokens per second. Arm-against-f16 comparisons are paired exact McNemar tests with Holm correction across the seven other arms. F1 against Q3_K_S and F1 against F2 use the same test on "label equals f16". Judge agreement (Cohen's kappa) is computed against 60 outputs the author labelled blind. The agreement check is pending: kappa for the keyword detector and for Llama Guard will be reported here once the author has labelled the 60 outputs, and if the refusal kappa is below 0.6 the headline switches to attack success rate.
+Per arm, test split, each rate with a Wilson 95% interval: harmful refusal rate (harmful), over-refusal rate (benign), flip rate against f16 (share of the 139 direct prompts whose refusal label differs), refusal rate under W1, attack success rate (Llama Guard `unsafe` share on harmful and on wrapped), ARC-Easy accuracy, truncation rate, size, bits per weight and tokens per second. Arm-against-f16 comparisons are paired exact McNemar tests with Holm correction across the seven other arms. F1 against Q3_K_S and F1 against F2 use the same test on "label equals f16". Judge agreement (Cohen's kappa) is computed against 60 outputs the author labelled blind. Against the 60 labels, the keyword refusal detector agrees with the author on 93.3% of outputs (kappa 0.87), so the refusal-based headline stands. Llama Guard agrees with the author on 93.3% of the 30 harmful-set outputs but its kappa is only 0.46, moderate agreement on a small sample, so attack success rates are best read as relative, not absolute.
 
 ## Method
 

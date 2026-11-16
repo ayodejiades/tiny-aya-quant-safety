@@ -1,5 +1,8 @@
 {
+  ".rops/guard.json.bak": "7c9b9eea750c224b46eaafc93e76b9a7c22875f56268ea791106642beadbdbfb",
   ".rops/prereg.json": "617ffdd799ad59081b3ca0a0b548c37e2c7187f3e0cb9170de58f2991456fdef",
+  "DEVIATIONS.md": "b7ff9d9fd1ea7947d015a186b54a02df90077f916a5141d0fe7f8e2198a2e8c4",
   "PREREG.md": "b0aff8dc7938da6c01265796913cac08a575f59a92cef4ce45a24b62b59f0da1",
-  "paper/LINKS.md": "deleted"
+  "paper/LINKS.md": "deleted",
+  "paper/allow_numbers.txt": "32b6ba54457ca91b4de81b1bd001939728d28ba464b81c4744af21816ea3f0d2"
 }

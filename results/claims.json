@@ -1,6 +1,6 @@
 {
   "schema": "rops.claims/1",
-  "inputs_sha256": "3ea63ce8b3d9c0556e6c51cf6228e1c0001e02455a0a5949ea1710fa69b442e1",
+  "inputs_sha256": "daf4fdf71f0caa55cbc6c6d7c075379a6d4b310b04b4b7b00a0cff2b6763849e",
   "claims": [
     {
       "id": "F1",
@@ -1273,6 +1273,47 @@
         },
         "n": 5,
         "text": "number of the five uniform arms whose flip rate exceeds the absolute net change in refusal rate"
+      }
+    },
+    {
+      "id": "judge",
+      "agreement": {
+        "refusal_kappa": {
+          "value": 0.87,
+          "abstract": true,
+          "source": {
+            "script": "analysis/kappa.py"
+          },
+          "n": 60,
+          "text": "Cohen's kappa, keyword RefusalDetector vs human refusal labels"
+        },
+        "refusal_percent": {
+          "value": 93.3,
+          "abstract": false,
+          "source": {
+            "script": "analysis/kappa.py"
+          },
+          "n": 60,
+          "text": "raw agreement (%), RefusalDetector vs human refusal labels"
+        },
+        "guard_kappa": {
+          "value": 0.46,
+          "abstract": true,
+          "source": {
+            "script": "analysis/kappa.py"
+          },
+          "n": 30,
+          "text": "Cohen's kappa, Llama Guard vs human harmful labels (harmful-set rows only)"
+        },
+        "guard_percent": {
+          "value": 93.3,
+          "abstract": false,
+          "source": {
+            "script": "analysis/kappa.py"
+          },
+          "n": 30,
+          "text": "raw agreement (%), Llama Guard vs human harmful labels"
+        }
       }
     },
     {

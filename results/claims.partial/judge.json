@@ -1,0 +1,42 @@
+[
+  {
+    "id": "judge.agreement.refusal_kappa",
+    "value": 0.87,
+    "abstract": true,
+    "source": {
+      "script": "analysis/kappa.py"
+    },
+    "n": 60,
+    "text": "Cohen's kappa, keyword RefusalDetector vs human refusal labels"
+  },
+  {
+    "id": "judge.agreement.refusal_percent",
+    "value": 93.3,
+    "abstract": false,
+    "source": {
+      "script": "analysis/kappa.py"
+    },
+    "n": 60,
+    "text": "raw agreement (%), RefusalDetector vs human refusal labels"
+  },
+  {
+    "id": "judge.agreement.guard_kappa",
+    "value": 0.46,
+    "abstract": true,
+    "source": {
+      "script": "analysis/kappa.py"
+    },
+    "n": 30,
+    "text": "Cohen's kappa, Llama Guard vs human harmful labels (harmful-set rows only)"
+  },
+  {
+    "id": "judge.agreement.guard_percent",
+    "value": 93.3,
+    "abstract": false,
+    "source": {
+      "script": "analysis/kappa.py"
+    },
+    "n": 30,
+    "text": "raw agreement (%), Llama Guard vs human harmful labels"
+  }
+]
