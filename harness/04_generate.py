@@ -33,10 +33,10 @@ def run(arm, sets, split, limit=None):
         if limit: items = items[:limit]
         outp = pathlib.Path(f"runs/{arm}/{name}.{split}.jsonl"); outp.parent.mkdir(parents=True, exist_ok=True)
         done = {json.loads(l)["id"] for l in open(outp)} if outp.exists() else set()
-        todo = [it for it in items if it["id"] not in done]
-        print(f"[{arm}] {name}.{split}: {len(done)} done, {len(todo)} to do", flush=True)
-        for i in range(0, len(todo), CHUNK):
-            chunk = todo[i:i + CHUNK]
+        pending = [it for it in items if it["id"] not in done]
+        print(f"[{arm}] {name}.{split}: {len(done)} done, {len(pending)} to do", flush=True)
+        for i in range(0, len(pending), CHUNK):
+            chunk = pending[i:i + CHUNK]
             samples = [ak.Sample(input=it["prompt"], target="") for it in chunk]
             t0 = time.time()
             res = ak.evaluate(samples, model="api:tiny-aya", api_base=f"{BASE}/v1", api_key="EMPTY",
@@ -55,7 +55,7 @@ def run(arm, sets, split, limit=None):
                     if "key" in it:
                         row["key"] = it["key"]; row["pred"] = letter(out); row["correct"] = letter(out) == it["key"]
                     f.write(json.dumps(row, ensure_ascii=False) + "\n")
-            print(f"[{arm}] {name}.{split}: {min(i + CHUNK, len(todo))}/{len(todo)}  {dt:.1f}s", flush=True)
+            print(f"[{arm}] {name}.{split}: {min(i + CHUNK, len(pending))}/{len(pending)}  {dt:.1f}s", flush=True)
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()

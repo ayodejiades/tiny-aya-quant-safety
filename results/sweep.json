@@ -1,0 +1,26 @@
+{
+  "scores": {
+    "0": 1.0,
+    "1": 0.95,
+    "2": 0.9166666666666666
+  },
+  "F1_block": 0,
+  "F1_layers": [
+    0,
+    11
+  ],
+  "F2_block": 2,
+  "F2_layers": [
+    24,
+    35
+  ],
+  "sizes_bytes": {
+    "sweep-B0.gguf": 2254200416,
+    "sweep-B1.gguf": 2254200416,
+    "sweep-B2.gguf": 2254200416,
+    "tiny-aya-global-Q2_K.gguf": 1481973344,
+    "tiny-aya-global-Q3_K_S-decoy.gguf": 2254200416,
+    "tiny-aya-global-Q3_K_S-protected.gguf": 2254200416,
+    "tiny-aya-global-Q3_K_S.gguf": 1660984928
+  }
+}

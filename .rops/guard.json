@@ -1,0 +1,28 @@
+{
+  "findings": [
+    {
+      "id": "G1",
+      "level": "FAIL",
+      "path": ".rops/guard.json.bak",
+      "line": null,
+      "detail": "changed since rops-guard-base-1; yours? rops-guard accept . .rops/guard.json.bak; the agent's? rops-guard restore . .rops/guard.json.bak"
+    },
+    {
+      "id": "G1",
+      "level": "FAIL",
+      "path": "DEVIATIONS.md",
+      "line": null,
+      "detail": "changed since rops-guard-base-1; yours? rops-guard accept . DEVIATIONS.md; the agent's? rops-guard restore . DEVIATIONS.md"
+    },
+    {
+      "id": "G1",
+      "level": "FAIL",
+      "path": "paper/allow_numbers.txt",
+      "line": null,
+      "detail": "changed since rops-guard-base-1; yours? rops-guard accept . paper/allow_numbers.txt; the agent's? rops-guard restore . paper/allow_numbers.txt"
+    }
+  ],
+  "fail": 3,
+  "warn": 0,
+  "base": "rops-guard-base-1"
+}

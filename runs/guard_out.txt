@@ -1,0 +1,4 @@
+FAIL G1 .rops/guard.json.bak: changed since rops-guard-base-1; yours? rops-guard accept . .rops/guard.json.bak; the agent's? rops-guard restore . .rops/guard.json.bak
+FAIL G1 DEVIATIONS.md: changed since rops-guard-base-1; yours? rops-guard accept . DEVIATIONS.md; the agent's? rops-guard restore . DEVIATIONS.md
+FAIL G1 paper/allow_numbers.txt: changed since rops-guard-base-1; yours? rops-guard accept . paper/allow_numbers.txt; the agent's? rops-guard restore . paper/allow_numbers.txt
+rops-guard: 3 FAIL, 0 WARN against rops-guard-base-1

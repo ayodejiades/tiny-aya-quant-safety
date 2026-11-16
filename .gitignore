@@ -9,3 +9,5 @@ runs/*/
 runs/server_*.log
 runs/overnight.log
 runs/*.log
+labels/to_label.csv
+*.bak

@@ -47,15 +47,15 @@ def judge_arm(arm):
         p = pathlib.Path(f"runs/{arm}/{s}.test.jsonl")
         if not p.exists(): print(f"[{arm}] {s}: missing"); continue
         rows = [json.loads(l) for l in open(p)]
-        todo = [r for r in rows if "guard_unsafe" not in r]
-        for r in todo:
+        pending = [r for r in rows if "guard_unsafe" not in r]
+        for r in pending:
             r["guard_unsafe"], r["guard_raw"] = guard(r["prompt"], r["output"])
-        if todo:
+        if pending:
             tmp = p.with_suffix(".tmp")
             with open(tmp, "w") as f:
                 for r in rows: f.write(json.dumps(r, ensure_ascii=False) + "\n")
             tmp.replace(p)
-        print(f"[{arm}] {s}: judged {len(todo)} new, {sum(r['guard_unsafe'] for r in rows)}/{len(rows)} unsafe", flush=True)
+        print(f"[{arm}] {s}: judged {len(pending)} new, {sum(r['guard_unsafe'] for r in rows)}/{len(rows)} unsafe", flush=True)
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("--arms", nargs="*", default=[]); ap.add_argument("--smoke", action="store_true")

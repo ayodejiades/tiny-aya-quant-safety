@@ -1,0 +1,50 @@
+{
+ "f16": {
+  "file": "official/tiny-aya-global-f16.gguf",
+  "bytes": 6710484576,
+  "tensor_elements": 3349227520,
+  "bits_per_weight": 16.03
+ },
+ "q8_0": {
+  "file": "official/tiny-aya-global-q8_0.gguf",
+  "bytes": 3570654816,
+  "tensor_elements": 3349227520,
+  "bits_per_weight": 8.53
+ },
+ "q4_k_m": {
+  "file": "official/tiny-aya-global-q4_k_m.gguf",
+  "bytes": 2143977056,
+  "tensor_elements": 3349227520,
+  "bits_per_weight": 5.12
+ },
+ "q4_0": {
+  "file": "official/tiny-aya-global-q4_0.gguf",
+  "bytes": 2034490976,
+  "tensor_elements": 3349227520,
+  "bits_per_weight": 4.86
+ },
+ "Q3_K_S": {
+  "file": "ours/tiny-aya-global-Q3_K_S.gguf",
+  "bytes": 1660984928,
+  "tensor_elements": 3349227520,
+  "bits_per_weight": 3.97
+ },
+ "Q2_K": {
+  "file": "ours/tiny-aya-global-Q2_K.gguf",
+  "bytes": 1481973344,
+  "tensor_elements": 3349227520,
+  "bits_per_weight": 3.54
+ },
+ "F1": {
+  "file": "ours/tiny-aya-global-Q3_K_S-protected.gguf",
+  "bytes": 2254200416,
+  "tensor_elements": 3349227520,
+  "bits_per_weight": 5.38
+ },
+ "F2": {
+  "file": "ours/tiny-aya-global-Q3_K_S-decoy.gguf",
+  "bytes": 2254200416,
+  "tensor_elements": 3349227520,
+  "bits_per_weight": 5.38
+ }
+}
