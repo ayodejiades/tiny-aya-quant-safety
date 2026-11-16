@@ -164,6 +164,8 @@ Quantization did not behave like a single dial. The official 4-bit k-quant kept 
 
 Ayodeji Adesegun
 
+Teammates tagged: none. This was a solo submission, so all work (design, harness, analysis, hand labels and write-up) is the author's.
+
 ## References
 
 - Chao et al., JailbreakBench (JBB-Behaviors dataset).
